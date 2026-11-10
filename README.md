@@ -1,5 +1,7 @@
 # JanSunwai — AI-powered multilingual civic grievance system
 
+![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-6DB33F?logo=springboot&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-database-4479A1?logo=postgresql&logoColor=white) ![Spring AI](https://img.shields.io/badge/Spring%20AI-1.1-6DB33F) ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black) ![Docker](https://img.shields.io/badge/Docker-compose-2496ED?logo=docker&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-blue)
+
 > Portfolio project by **Rajesh Behera**. Runs on **demonstration data** (sample wards, users and complaints).
 > Not an official government service.
 
@@ -8,7 +10,11 @@ pin them on a map and track every step. AI **suggests** the category, department
 and finds **duplicate complaints across languages**. Officers always make the final decision. Every accepted complaint
 gets a deadline (SLA), and overdue ones are **escalated automatically and exactly once**.
 
-![Officer review with AI suggestion and cross-language duplicate](docs/screenshots/06-officer-review-ai.png)
+## Demo
+
+![JanSunwai demo](docs/demo/jansunwai-demo.gif)
+
+▶️ **Full walkthrough video** (about 4.5 minutes, every role, with captions): [docs/demo/jansunwai-demo.mp4](docs/demo/jansunwai-demo.mp4)
 
 ## Highlights
 
