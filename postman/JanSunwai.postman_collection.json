@@ -1,0 +1,1487 @@
+{
+  "info": {
+    "name": "JanSunwai API (demo data)",
+    "description": "Run 'POST /auth/login' first (token is saved automatically). Demo password Demo@1234. Change the login e-mail to act as another role: citizen1@, roads.officer@, roads.field@, admin@jansunwai.demo.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "complaintId",
+      "value": "1"
+    },
+    {
+      "key": "trackingId",
+      "value": "JS-2026-001001"
+    },
+    {
+      "key": "candidateId",
+      "value": "1"
+    },
+    {
+      "key": "attachmentId",
+      "value": "1"
+    },
+    {
+      "key": "wardId",
+      "value": "1"
+    },
+    {
+      "key": "departmentId",
+      "value": "1"
+    },
+    {
+      "key": "userId",
+      "value": "5"
+    },
+    {
+      "key": "notificationId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "AI: classification, duplicates, usage",
+      "item": [
+        {
+          "name": "GET /ai/analysis/{complaintId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/analysis/{{complaintId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ai",
+                "analysis",
+                "{{complaintId}}"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /ai/duplicates/pending",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/duplicates/pending",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ai",
+                "duplicates",
+                "pending"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /ai/provider",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/provider",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ai",
+                "provider"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /ai/usage",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/usage",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ai",
+                "usage"
+              ],
+              "query": []
+            },
+            "description": "AI calls, failures, tokens, estimated cost and latency per provider/model"
+          }
+        },
+        {
+          "name": "POST /ai/classify/{complaintId}",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/classify/{{complaintId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ai",
+                "classify",
+                "{{complaintId}}"
+              ],
+              "query": []
+            },
+            "description": "Re-run AI classification (suggestion only; the officer still decides)"
+          }
+        },
+        {
+          "name": "POST /ai/duplicates/candidates/{candidateId}/approve",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/duplicates/candidates/{{candidateId}}/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ai",
+                "duplicates",
+                "candidates",
+                "{{candidateId}}",
+                "approve"
+              ],
+              "query": []
+            },
+            "description": "Human approval: link the newer complaint to the older one (each keeps its tracking ID)"
+          }
+        },
+        {
+          "name": "POST /ai/duplicates/candidates/{candidateId}/reject",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/duplicates/candidates/{{candidateId}}/reject",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ai",
+                "duplicates",
+                "candidates",
+                "{{candidateId}}",
+                "reject"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /ai/duplicates/{complaintId}/detect",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/duplicates/{{complaintId}}/detect",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ai",
+                "duplicates",
+                "{{complaintId}}",
+                "detect"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Administration",
+      "item": [
+        {
+          "name": "GET /audit-logs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/audit-logs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "audit-logs"
+              ],
+              "query": [
+                {
+                  "key": "entityType",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "actorId",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "role",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "departmentId",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /users/{id}",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{userId}}"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"active\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /users",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"New Field Officer\",\n  \"email\": \"field.new@jansunwai.demo\",\n  \"phone\": null,\n  \"password\": \"Strong@123\",\n  \"role\": \"FIELD_OFFICER\",\n  \"departmentId\": 1\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication & profile",
+      "item": [
+        {
+          "name": "GET /auth/me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /users/me/password",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/me/password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "me",
+                "password"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"Demo@1234\",\n  \"newPassword\": \"NewPass@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ],
+              "query": []
+            },
+            "description": "Log in and receive a JWT (rate-limited)",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"citizen1@jansunwai.demo\",\n  \"password\": \"Demo@1234\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "if (r.accessToken) { pm.collectionVariables.set('token', r.accessToken); }",
+                  "pm.test('login ok', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /auth/logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /auth/register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ],
+              "query": []
+            },
+            "description": "Citizen self-registration (always creates a CITIZEN account)",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"New Citizen\",\n  \"email\": \"new.citizen@example.com\",\n  \"phone\": \"9876501234\",\n  \"password\": \"Strong@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /users/me",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "me"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Ananya Das\",\n  \"phone\": \"9876501234\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Complaints",
+      "item": [
+        {
+          "name": "GET /complaints",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "departmentId",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "wardId",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "overdueOnly",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "List complaints visible to the caller (citizen: own, field officer: assigned, officer: department)"
+          }
+        },
+        {
+          "name": "GET /complaints/track/{trackingId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints/track/{{trackingId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints",
+                "track",
+                "{{trackingId}}"
+              ],
+              "query": []
+            },
+            "description": "Public tracking by tracking ID (no login, no personal data)"
+          }
+        },
+        {
+          "name": "GET /complaints/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints/{{complaintId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints",
+                "{{complaintId}}"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /complaints/{id}/attachments/{attachmentId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints/{{complaintId}}/attachments/{{attachmentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints",
+                "{{complaintId}}",
+                "attachments",
+                "{{attachmentId}}"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /complaints/{id}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints/{{complaintId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints",
+                "{{complaintId}}",
+                "status"
+              ],
+              "query": []
+            },
+            "description": "Workflow step: start work, submit resolution, approve resolution, send back, close, reopen",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"IN_PROGRESS\",\n  \"note\": \"Work started\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /complaints",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints"
+              ],
+              "query": []
+            },
+            "description": "Submit a complaint (en/hi/or). AI analysis runs in the background after saving.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Big pothole near bus stop\",\n  \"description\": \"Deep pothole near the bus stop, two-wheelers fall at night.\",\n  \"language\": \"en\",\n  \"latitude\": 20.2955,\n  \"longitude\": 85.8441,\n  \"landmark\": \"Bus stop\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "if (r.id) { pm.collectionVariables.set('complaintId', r.id); pm.collectionVariables.set('trackingId', r.trackingId); }",
+                  "pm.test('created', () => pm.response.to.have.status(201));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /complaints/{id}/assign",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints/{{complaintId}}/assign",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints",
+                "{{complaintId}}",
+                "assign"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fieldOfficerId\": 3,\n  \"note\": \"Please inspect today\",\n  \"reassign\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /complaints/{id}/attachments",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints/{{complaintId}}/attachments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints",
+                "{{complaintId}}",
+                "attachments"
+              ],
+              "query": []
+            },
+            "description": "Upload a JPEG/PNG/WEBP photo (citizen: evidence, assigned field officer: resolution proof)",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /complaints/{id}/remarks",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints/{{complaintId}}/remarks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints",
+                "{{complaintId}}",
+                "remarks"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Please share a photo of the spot\",\n  \"visibility\": \"PUBLIC\",\n  \"infoRequest\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /complaints/{id}/review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints/{{complaintId}}/review",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "complaints",
+                "{{complaintId}}",
+                "review"
+              ],
+              "query": []
+            },
+            "description": "Approve (with human-confirmed classification), reroute or reject an UNDER_REVIEW complaint",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"decision\": \"APPROVE\",\n  \"category\": \"ROAD_DAMAGE\",\n  \"departmentId\": 1,\n  \"priority\": \"HIGH\",\n  \"note\": \"Team will inspect\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboards, maps & ward intelligence",
+      "item": [
+        {
+          "name": "GET /dashboard/department/{departmentId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/department/{{departmentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "department",
+                "{{departmentId}}"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /dashboard/summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "summary"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /dashboard/ward/{wardId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/ward/{{wardId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "ward",
+                "{{wardId}}"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /dashboard/weekly-summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/weekly-summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "weekly-summary"
+              ],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Ward summaries for the week containing 'date' (facts from SQL + labelled AI narrative)"
+          }
+        },
+        {
+          "name": "GET /geo/heatmap",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/geo/heatmap",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "geo",
+                "heatmap"
+              ],
+              "query": [
+                {
+                  "key": "wardId",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "departmentId",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /geo/hotspots",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/geo/hotspots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "geo",
+                "hotspots"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /geo/nearby-summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/geo/nearby-summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "geo",
+                "nearby-summary"
+              ],
+              "query": [
+                {
+                  "key": "lat",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "lng",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "radiusMeters",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Counts of open complaints near a point (shown before submitting, to reduce duplicates)"
+          }
+        },
+        {
+          "name": "POST /dashboard/weekly-summary/generate",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/weekly-summary/generate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "weekly-summary",
+                "generate"
+              ],
+              "query": [
+                {
+                  "key": "wardId",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "date",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Departments & wards",
+      "item": [
+        {
+          "name": "GET /departments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "departments"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /departments/{id}/complaints",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/{{departmentId}}/complaints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "departments",
+                "{{departmentId}}",
+                "complaints"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /departments/{id}/field-officers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/{{departmentId}}/field-officers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "departments",
+                "{{departmentId}}",
+                "field-officers"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /wards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/wards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "wards"
+              ],
+              "query": []
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /wards/shapes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/wards/shapes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "wards",
+                "shapes"
+              ],
+              "query": []
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /departments",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "departments"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"PARKS\",\n  \"name\": \"Parks & Gardens\",\n  \"active\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /wards",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/wards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "wards"
+              ],
+              "query": []
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"W05\",\n  \"name\": \"New Ward (DEMO)\",\n  \"boundary\": [\n    [\n      85.86,\n      20.3\n    ],\n    [\n      85.87,\n      20.3\n    ],\n    [\n      85.87,\n      20.31\n    ],\n    [\n      85.86,\n      20.31\n    ],\n    [\n      85.86,\n      20.3\n    ]\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /departments/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/{{departmentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "departments",
+                "{{departmentId}}"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"PARKS\",\n  \"name\": \"Parks & Gardens\",\n  \"active\": true\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "GET /notifications",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "notifications"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /notifications/unread-count",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications/unread-count",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "notifications",
+                "unread-count"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /notifications/{id}/read",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/notifications/{{notificationId}}/read",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "notifications",
+                "{{notificationId}}",
+                "read"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public",
+      "item": [
+        {
+          "name": "GET /public/track/{trackingId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/public/track/{{trackingId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "public",
+                "track",
+                "{{trackingId}}"
+              ],
+              "query": []
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SLA & escalations",
+      "item": [
+        {
+          "name": "GET /escalations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/escalations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "escalations"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /sla/configurations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/sla/configurations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "sla",
+                "configurations"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /sla/overdue",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/sla/overdue",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "sla",
+                "overdue"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /sla/configurations",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/sla/configurations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "sla",
+                "configurations"
+              ],
+              "query": []
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"departmentId\": null,\n  \"priority\": \"HIGH\",\n  \"resolutionHours\": 24,\n  \"warningPercent\": 75,\n  \"active\": true\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
