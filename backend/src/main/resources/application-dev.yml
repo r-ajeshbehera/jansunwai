@@ -1,0 +1,7 @@
+# Local development: also loads clearly labelled DEMO data (wards, users, complaints).
+spring:
+  flyway:
+    locations: classpath:db/migration,classpath:db/demo
+logging:
+  level:
+    com.jansunwai: DEBUG

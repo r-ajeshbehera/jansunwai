@@ -1,0 +1,15 @@
+# Production: every secret comes from environment variables (no defaults, so a missing one stops the start-up).
+# No demo data.
+spring:
+  flyway:
+    locations: classpath:db/migration
+  datasource:
+    password: ${DB_PASSWORD}
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+server:
+  forward-headers-strategy: framework
+logging:
+  level:
+    root: INFO
