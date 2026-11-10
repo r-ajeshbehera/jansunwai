@@ -1,0 +1,15 @@
+spring:
+  flyway:
+    locations: classpath:db/migration,classpath:db/demo
+app:
+  jobs:
+    enabled: false          # tests call the services directly; no background job changes data mid-test
+  ai:
+    provider: mock
+    timeout-seconds: 5
+  rate-limit:
+    auth-per-minute: 1000
+    submit-per-minute: 1000
+    public-per-minute: 1000
+  uploads:
+    directory: ${java.io.tmpdir}/jansunwai-test-uploads
